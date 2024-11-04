@@ -1,0 +1,80 @@
+{% load static %}
+
+<aside x-show="mobileSidebarOpen" x-cloak
+class="md:!block col-span-full md:col-span-1 mx-[5%] md:mr-[20%] order-1 md:order-2"
+x-transition:enter="duration-300 ease-out" x-transition:enter-start="opacity-0 -mt-96"
+x-transition:enter-end="opacity-100 mt-0" x-transition:leave="duration-300 ease-in"
+x-transition:leave-start="opacity-100 mt-0" x-transition:leave-end="opacity-0 -mt-96">
+<section class="card p-4">
+    <h2>Categories</h2>
+    <ul class="hoverlist">
+        {% for category in categories %}
+        <li {% if category.slug == tag.slug %}class="highlight"{% endif %}><a href="{% url 'category-view' category.slug %}">
+                <img class="w-8 h-8 object-cover mr-2"
+                    src="{{ category.image.url }}" alt="{{ category.name }} icon" />
+                <span class="font-bold text-sm">{{ category.name }}</span>
+            </a></li>
+        {% endfor %}
+        
+    </ul>
+</section>
+
+<section class="card p-4">
+    <div class="flex items-center">
+        <img class="w-6 mr-2 -mt-3" src="{% static 'images/fireheart_black.svg' %}" alt="Top Posts">
+        <h2 class="">Top Posts</h2>
+    </div>
+    <ul class="hoverlist">
+
+        {% for post in top_posts %}
+        <li><a href="{% url 'post-page' post.id %}" class="flex items-stretch justify-between">
+                <div class="flex items-center truncate">
+                    <img class="w-10 h-10 rounded-lg object-cover mr-3 shrink-0"
+                    src="{{ post.image }}" alt="" />
+
+                    {% if post.author %}
+                    <img class="w-6 h-6 rounded-full object-cover mr-1"
+                    src="{{ post.author.profile.avatar }}" alt="" />
+                    <span class="font-bold text-sm mr-1">{{ post.author.username }}</span>
+                    {% else %}
+                    <img class="w-6 h-6 rounded-full object-cover mr-1" src="{% static 'images/avatar_default.svg' %}" alt="" />
+                    <span class="font-bold text-sm mr-1">no author</span>
+                    {% endif %}
+
+                </div>   
+                <span class="{% if user in post.likes.all %}font-bold{% else %}font-light{% endif %} text-sm text-gray-500 shrink-0">{{ post.likes.count }} Like{{ post.likes.count|pluralize:'s' }} / {{ post.comments.count }}</span>
+            </a>
+        </li>
+        {% endfor %}
+
+    </ul>
+</section>
+
+<section class="card p-4">
+    <div class="flex items-center">
+        <img class="w-6 mr-2 -mt-3" src="{% static 'images/fireheart_black.svg' %}" alt="Top Comments">
+        <h2 class="">Top Comments</h2>
+    </div>
+    <ul class="hoverlist">
+
+        {% for comment in top_comments %}
+        <li>
+            <a href="{% url 'post-page' comment.parent_post.id %}" class="flex items-stretch justify-between">
+                <div class="flex items-center truncate">
+                    {% if comment.author %}
+                    <img class="w-8 h-8 rounded-full object-cover mr-1"
+                        src="{{ comment.author.profile.avatar }}" alt="" />
+                    <span class="font-bold text-sm mr-1">{{ comment.author.profile.name }}: {{ comment.body|truncatechars:10 }}</span>
+                    {% else %}
+                    <img class="w-8 h-8 rounded-full object-cover mr-1" src="{% static 'images/avatar_default.svg' %}" alt="" />
+                    <span class="font-light text-sm mr-1">no author: {{ comment.body|truncatechars:10 }}</span>
+                    {% endif %}
+                </div>
+                <span class="text-sm {% if user in comment.likes.all %}font-bold{% else %}font-light{% endif %} text-gray-500 shrink-0">{{comment.likes.count}} Like{{ comment.likes.count|pluralize:'s' }} / {{ comment.replies.count }}</span>
+            </a>
+        </li>
+        {% endfor %}
+
+    </ul>
+</section>
+</aside>

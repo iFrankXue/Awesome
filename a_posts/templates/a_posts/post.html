@@ -1,0 +1,60 @@
+{% load static %}
+
+<article class="card">
+    <div class="flex items-center justify-between px-4 h-14">
+        <h3 class="text-lg font-bold w-[50%] truncate">{{ post.title }}</h3>
+        <div class="text-sm text-gray-500">
+            Flickr <a href="{{ post.url }}" class="hover:underline" target="_blank">@{{ post.artist }}</a>
+        </div>
+    </div>
+    <figure>
+        <a href="{% url 'post-page' post.id %}"><img class="w-full" src="{{ post.image }}"
+                alt=""></a>
+    </figure>
+
+    <div class="p-4 pb-2">
+        {% if post.author %}
+        <a class="flex items-center gap-1 mb-4" href="{% url 'user-profile' post.author.username %}">
+            <img class="w-8 h-8 rounded-full" src="{{ post.author.profile.avatar }}"
+                alt="happy--v1" />
+            <span class="font-bold hover:underline">{{ post.author.profile.name }}</span>
+            <span class="text-sm text-gray-400">@{{ post.author.username }}</span>
+        </a>
+        {% else %}
+        <div class="flex items-center gap-1 mb-4">
+            <img class="w-8 h-8 rounded-full" src="{% static 'images/avatar_default.svg' %}"
+                alt="happy--v1" />
+            <span class="text-gray-500">no author</span>
+        </div>
+        {% endif %}
+        <p class="text-5xl mb-10 px-4 font1">{{ post.body }}</p>
+
+        <div class="flex items-center gap-2 text-sm mb-5">
+
+            {% for tag in post.tags.all %}
+                <a class="bg-gray-200 rounded-full px-3 py-1 hover:bg-gray-500 hover:text-white"
+                    href="{% url 'category-view' tag.slug %}">{{ tag.name }}</a>
+            {% empty %}
+                <a class="bg-gray-200 rounded-full px-3 py-1 hover:bg-gray-500 hover:text-white"
+                href="">Uncategorized</a>
+            {% endfor %}
+
+        </div>
+
+        <div class="flex items-center justify-between text-sm px-2">
+            <a class="font-bold hover:underline" href="{% url 'post-page' post.id %}">
+                {% if post.comments.count %}
+                    Comments
+                    <span id="commentscount-{{post.id}}" class="font-light text-gray-500 ml-2">{{ post.comments.count }}</span>
+                {% else %}
+                    {% if user.is_authenticated %}
+                    Add Comments
+                    {% endif %}
+                {% endif %}
+            </a>
+            
+            {% include "snippets/post_likes.html" %}
+
+        </div>
+    </div>
+</article>
