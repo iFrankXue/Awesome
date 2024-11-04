@@ -17,19 +17,20 @@ from environ import Env
 env = Env()
 
 Env.read_env()
-ENVIRONMENT = env('ENVIRONMENT', default='production')
+ENVIRONMENT = env('ENVIRONMENT')
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # print(SECRET_KEY)
 ENCRYPT_KEY = env('ENCRYPT_KEY')
 SECRET_KEY = env('SECRET_KEY')
+
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Quick-start development settings - unsuitable for production
+# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 if ENVIRONMENT == 'development':
