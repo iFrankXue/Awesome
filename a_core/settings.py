@@ -18,7 +18,7 @@ env = Env()
 
 Env.read_env()
 ENVIRONMENT = env('ENVIRONMENT')
-
+HOSTING = env('HOSTING')
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # print(SECRET_KEY)
@@ -38,7 +38,16 @@ if ENVIRONMENT == 'development':
 else:
     DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+if ENVIRONMENT == 'production':
+    if HOSTING == 'railway':
+        ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'awesome-frank.up.railway.app']
+        CSRF_TRUSTED_ORIGINS = ['https://awesome-frank.up.railway.app']
+    elif HOSTING == 'render':
+        ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'awesome-qgfk.onrender.com']
+        CSRF_TRUSTED_ORIGINS = ['https://awesome-qgfk.onrender.com']
+    else:
+        ALLOWED_HOSTS = [*]
+
 
 INTERNAL_IPS = (
     '127.0.0.1',
