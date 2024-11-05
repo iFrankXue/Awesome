@@ -56,6 +56,8 @@ urlpatterns = [
     path('profile/delete/', profile_delete_view, name='profile-delete'),
     path('profile/view/<str:username>/', profile_view, name='user-profile'),
     path('profile/onboarding/', profile_edit_view, name='profile-onboarding'),
+    path('profile/verify-email/', profile_verify_email, name='profile-verify-email'),
+    
     
     path('inbox/', include('a_inbox.urls')),
     
