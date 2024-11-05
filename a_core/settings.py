@@ -46,7 +46,7 @@ if ENVIRONMENT == 'production':
         ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'awesome-qgfk.onrender.com']
         CSRF_TRUSTED_ORIGINS = ['https://awesome-qgfk.onrender.com']
     else:
-        ALLOWED_HOSTS = [*]
+        ALLOWED_HOSTS = ['*']
 
 
 INTERNAL_IPS = (
