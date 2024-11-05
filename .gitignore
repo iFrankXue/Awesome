@@ -7,7 +7,7 @@ __pycache__/
 .DS_Store
 db.sqlite3
 Awesome.code-workspace
-
+.vscode/
 
 # # Created by https://www.gitignore.io
 
