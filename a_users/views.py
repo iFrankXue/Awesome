@@ -68,7 +68,7 @@ def profile_edit_view(request):
                     return redirect('profile-verify-email')
             except ObjectDoesNotExist:
                 # Render to a different view if no primary email exists
-                messages.warning(request, 'No primary email address found. <br/>Please verify email.')
+                messages.warning(request, 'No primary email address found. Please verify email.')
                 return redirect('profile-view')
             
         else:
