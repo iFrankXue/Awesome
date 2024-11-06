@@ -33,20 +33,34 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-if ENVIRONMENT == 'development':
-    DEBUG = True
-else:
+if ENVIRONMENT == 'production':
     DEBUG = False
+else:
+    DEBUG = True
+    
+ALLOWED_HOSTS = ['*']
 
 if ENVIRONMENT == 'production':
     if HOSTING == 'railway':
-        ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'awesome-frank.up.railway.app']
-        CSRF_TRUSTED_ORIGINS = ['https://awesome-frank.up.railway.app', 'https://awesome.frankxue.ca']
+        ALLOWED_HOSTS = [
+            'localhost', 
+            '127.0.0.1', 
+            'awesome-frank.up.railway.app',
+            'awesome.frankxue.ca',
+            ]
+        CSRF_TRUSTED_ORIGINS = [
+            'https://awesome-frank.up.railway.app', 
+            'https://awesome.frankxue.ca',
+            ]
     elif HOSTING == 'render':
-        ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'awesome-qgfk.onrender.com', 'awesome.frankxue.ca']
-        CSRF_TRUSTED_ORIGINS = ['https://awesome-qgfk.onrender.com']
-    else:
-        ALLOWED_HOSTS = ['*']
+        ALLOWED_HOSTS = [
+            'localhost', 
+            '127.0.0.1', 
+            'awesome-qgfk.onrender.com',
+            ]
+        CSRF_TRUSTED_ORIGINS = [
+            'https://awesome-qgfk.onrender.com'
+            ]        
 
 
 INTERNAL_IPS = (

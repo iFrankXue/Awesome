@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from allauth.account.utils import send_email_confirmation
 from django.contrib.auth import logout
 from django.urls import reverse
+from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Count
 
 from a_posts.models import Post
@@ -57,14 +58,19 @@ def profile_edit_view(request):
         form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
         if form.is_valid():
             form.save()
-            
-            if request.user.emailaddress_set.get(primary=True).verified:
-                return redirect('profile-view')
-            else:
-                return redirect('profile-verify-email')
-            
             messages.success(request, 'Profile updated successfully!')
-            return redirect('profile-view')
+            
+            try:
+                # Check if the primary email address is verified
+                if request.user.emailaddress_set.get(primary=True).verified:
+                    return redirect('profile-view')
+                else:
+                    return redirect('profile-verify-email')
+            except ObjectDoesNotExist:
+                # Render to a different view if no primary email exists
+                messages.warning(request, 'No primary email address found. <br/>Please verify email.')
+                return redirect('profile-view')
+            
         else:
             messages.error(request, 'Please correct the errors below.')
     else:
@@ -74,12 +80,9 @@ def profile_edit_view(request):
         'form': form    
     }
 
-    if request.path == reverse('profile-onboarding'):
-        template = 'onboarding'
-    else:
-        template = 'edit'
-    template = 'a_users/profile_' + template + '.html'
-    
+    # Choose the correct template
+    template = 'a_users/profile_onboarding.html' if request.path == reverse('profile-onboarding') else 'a_users/profile_edit.html'
+ 
     return render(request, template, context)
 
 
