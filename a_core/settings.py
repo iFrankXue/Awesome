@@ -47,10 +47,14 @@ if ENVIRONMENT == 'production':
             '127.0.0.1', 
             'awesome-frank.up.railway.app',
             'awesome.frankxue.ca',
+            'awesome-staging.up.railway.app',
             ]
         CSRF_TRUSTED_ORIGINS = [
             'https://awesome-frank.up.railway.app', 
             'https://awesome.frankxue.ca',
+
+            # For staging development
+            'https://awesome-staging.up.railway.app',
             ]
     elif HOSTING == 'render':
         ALLOWED_HOSTS = [
