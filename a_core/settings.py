@@ -41,9 +41,9 @@ else:
 if ENVIRONMENT == 'production':
     if HOSTING == 'railway':
         ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'awesome-frank.up.railway.app']
-        CSRF_TRUSTED_ORIGINS = ['https://awesome-frank.up.railway.app']
+        CSRF_TRUSTED_ORIGINS = ['https://awesome-frank.up.railway.app', 'https://awesome.frankxue.ca']
     elif HOSTING == 'render':
-        ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'awesome-qgfk.onrender.com']
+        ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'awesome-qgfk.onrender.com', 'awesome.frankxue.ca']
         CSRF_TRUSTED_ORIGINS = ['https://awesome-qgfk.onrender.com']
     else:
         ALLOWED_HOSTS = ['*']
@@ -158,6 +158,11 @@ POSTGRES_LOCALLY = False
 
 if ENVIRONMENT == 'production' or POSTGRES_LOCALLY:
     DATABASES['default'] = dj_database_url.parse(env('DATABASE_URL'))
+
+    # if HOSTING == 'railway':
+    #     DATABASES['default'] = dj_database_url.parse(env('RAILWAY_DATABASE_URL'))
+    # elif HOSTING == 'render':
+    #     DATABASES['default'] = dj_database_url.parse(env('RENDER_DATABASE_URL'))
 
 
 
