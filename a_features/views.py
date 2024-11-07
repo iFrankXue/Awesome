@@ -8,7 +8,7 @@ def feature_enabled(id, developer):
     print(settings.STAGING )
     
     if (settings.ENVIRONMENT == 'development' and settings.DEVELOPER == developer) or \
-        (feature.staging_enabled and settings.STAGING == 'True' ) or \
+        (feature.staging_enabled and settings.STAGING) or \
         feature.production_enabled:
         feature_enabled = True
     else:
