@@ -10,6 +10,7 @@ import requests
 
 from .models import Post, Tag, Comment, Reply
 from .forms import PostCreateForm, PostEditForm, CommentCreateForm, ReplyCreateForm
+from a_features.views import feature_enabled
 from .utils import validate_uuid
 # Create your views here.
 
@@ -29,10 +30,16 @@ def home_view(request, slug=None):
     except:
         return HttpResponse('')
     
+    try:
+        feature_herobutton = feature_enabled(1, 'Frank')
+    except:
+        feature_herobutton = False
+    
     context = {
         'posts': posts,
         'page': page,
         'tag': tag,
+        'feature_herobutton': feature_herobutton,
     }
     
     if request.htmx:

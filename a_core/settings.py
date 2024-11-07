@@ -18,6 +18,12 @@ env = Env()
 
 Env.read_env()
 ENVIRONMENT = env('ENVIRONMENT')
+
+# Feature toggle
+DEVELOPER = env('DEVELOPER', default='')
+STAGING = env('STAGING', default=False)
+
+
 HOSTING = env('HOSTING')
 
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -105,6 +111,7 @@ INSTALLED_APPS = [
     'a_posts',
     'a_users',
     'a_inbox',
+    'a_features',
     
     'django_cleanup.apps.CleanupConfig',
     

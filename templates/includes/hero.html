@@ -1,3 +1,4 @@
+
 <hero
 class="grid bg-gray-700 text-white text-center bg-cover bg-center z-10 relative bg-[url('https://live.staticflickr.com/5485/11204923294_ede0098dd6_b.jpg')]">
     <div class="col-start-1 row-start-1 bg-gray-800 bg-opacity-50 w-full h-full"></div>
@@ -5,7 +6,11 @@ class="grid bg-gray-700 text-white text-center bg-cover bg-center z-10 relative 
         <h1 class="titleBlip font1">Awesome Photos and Captions</h1>
         <p class="text-lg font-bold mb-5">Share your favorite Photos from Flickr and add a great caption.</p>
         {% if not user.is_authenticated %}
-        <a class="button" href="{% url 'account_login' %}">Get Started</a>
+            {% if feature_herobutton %}
+            <a style="padding:30px; background-color:06b6d4; border-radius: 15px" class="button" href="{% url 'account_signup' %}">Create Account</a>            
+            {% else %}
+            <a class="button" href="{% url 'account_login' %}">Get Started</a>
+            {% endif %}
         {% endif %}
     </div>
 </hero>
