@@ -139,10 +139,16 @@ def post_page_view(request, pk):
         }
         return render(request, 'snippets/loop_postpage_comments.html', context)
     
+    try:
+        feature_herobutton = feature_enabled(1, 'Frank')
+    except:
+        feature_herobutton = False    
+    
     context = {
         'post': post,
         'comment_form': comment_form,
         'reply_form': reply_form,
+        'feature_herobutton': feature_herobutton,
     }    
     return render(request, 'a_posts/post_page.html', context)
 
