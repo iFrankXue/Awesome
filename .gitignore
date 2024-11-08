@@ -1,4 +1,5 @@
 awe-venv/
+venv/
 media/
 static/
 node/
