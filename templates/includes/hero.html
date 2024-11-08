@@ -7,7 +7,8 @@ class="grid bg-gray-700 text-white text-center bg-cover bg-center z-10 relative 
         <p class="text-lg font-bold mb-5">Share your favorite Photos from Flickr and add a great caption.</p>
         {% if not user.is_authenticated %}
             {% if feature_herobutton %}
-            <a style="padding:30px; background-color:#f97316; border-radius: 15px" class="button" href="{% url 'account_signup' %}">Join Us</a>            
+            <a style="padding:30px; background-color:#1e1e1e; border-radius: 15px" class="button" href="{% url 'account_signup' %}">Create Account</a>            
+
             {% else %}
             <a class="button" href="{% url 'account_login' %}">Get Started</a>
             {% endif %}
