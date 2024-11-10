@@ -23,7 +23,7 @@ class Post(models.Model):
         ordering = ['-created']
         
     def get_absolute_url(self):
-        return f'/post/{self.id}/'
+        return f'/posts/show/{self.id}/'
         
         
 class LikedPost(models.Model):
