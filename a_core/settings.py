@@ -100,6 +100,7 @@ INSTALLED_APPS = [
     'a_landingpages',
     
     'django_cleanup.apps.CleanupConfig',
+    'django.contrib.sitemaps',
     
 ]
 
