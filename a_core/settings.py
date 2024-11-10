@@ -113,6 +113,7 @@ INSTALLED_APPS = [
     'a_users',
     'a_inbox',
     'a_features',
+    'a_landingpages',
     
     'django_cleanup.apps.CleanupConfig',
     
@@ -135,7 +136,10 @@ MIDDLEWARE = [
     'django_htmx.middleware.HtmxMiddleware',
     
     # Add the account middleware:
-    "allauth.account.middleware.AccountMiddleware",    
+    "allauth.account.middleware.AccountMiddleware",
+    
+    # Manually defined middleware:
+    'a_landingpages.middleware.landingpage_middleware',
 ]
 
 ROOT_URLCONF = 'a_core.urls'
