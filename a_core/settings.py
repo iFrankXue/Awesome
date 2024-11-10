@@ -24,7 +24,7 @@ DEVELOPER = env('DEVELOPER', default='')
 STAGING = env('STAGING', default=False)
 
 
-HOSTING = env('HOSTING')
+# HOSTING = env('HOSTING')
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # print(SECRET_KEY)
@@ -47,30 +47,30 @@ else:
 ALLOWED_HOSTS = ['*']
 
 if ENVIRONMENT == 'production':
-    if HOSTING == 'railway':
-        ALLOWED_HOSTS = [
-            'localhost', 
-            '127.0.0.1', 
-            'awesome-frank.up.railway.app',
-            'awesome.frankxue.ca',
-            'awesome-staging.up.railway.app',
-            ]
-        CSRF_TRUSTED_ORIGINS = [
-            'https://awesome-frank.up.railway.app', 
-            'https://awesome.frankxue.ca',
+    # if HOSTING == 'railway':
+    ALLOWED_HOSTS = [
+        'localhost', 
+        '127.0.0.1', 
+        'awesome-frank.up.railway.app',
+        'awesome.frankxue.ca',
+        'awesome-staging.up.railway.app',
+        ]
+    CSRF_TRUSTED_ORIGINS = [
+        'https://awesome-frank.up.railway.app', 
+        'https://awesome.frankxue.ca',
 
-            # For staging development
-            'https://awesome-staging.up.railway.app',
-            ]
-    elif HOSTING == 'render':
-        ALLOWED_HOSTS = [
-            'localhost', 
-            '127.0.0.1', 
-            'awesome-qgfk.onrender.com',
-            ]
-        CSRF_TRUSTED_ORIGINS = [
-            'https://awesome-qgfk.onrender.com'
-            ]        
+        # For staging development
+        'https://awesome-staging.up.railway.app',
+        ]
+    # elif HOSTING == 'render':
+    #     ALLOWED_HOSTS = [
+    #         'localhost', 
+    #         '127.0.0.1', 
+    #         'awesome-qgfk.onrender.com',
+    #         ]
+    #     CSRF_TRUSTED_ORIGINS = [
+    #         'https://awesome-qgfk.onrender.com'
+    #         ]        
 
 
 INTERNAL_IPS = (
@@ -246,14 +246,15 @@ if ENVIRONMENT == 'production' or POSTGRES_LOCALLY:
         },
     }
     
+    CLOUDINARY_STORAGE = {
+        'CLOUD_NAME': env('CLOUD_NAME'),
+        'API_KEY': env('CLOUD_API_KEY'),
+        'API_SECRET': env('CLOUD_API_SECRET'),
+    }
+    
 else:
     MEDIA_ROOT = BASE_DIR / 'media'
 
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': env('CLOUD_NAME'),
-    'API_KEY': env('CLOUD_API_KEY'),
-    'API_SECRET': env('CLOUD_API_SECRET'),
-}
 
 # print(f"Using Cloudinary for file storage: {DEFAULT_FILE_STORAGE}")
 # print("Cloudinary Config:", env('CLOUD_NAME'), env('CLOUD_API_KEY'), env('CLOUD_API_SECRET'))
