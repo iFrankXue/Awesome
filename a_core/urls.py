@@ -61,6 +61,8 @@ urlpatterns = [
     
     path('inbox/', include('a_inbox.urls')),
     
+    path('_/', include('a_landingpages.urls')),
+    
 ]
 
 # # Only for development
