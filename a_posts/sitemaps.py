@@ -18,3 +18,5 @@ class CategorySitemap(Sitemap):
 class PostpageSitemap(Sitemap):
     def items(self):
         return Post.objects.all()[:100]
+
+
