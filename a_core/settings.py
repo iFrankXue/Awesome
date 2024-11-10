@@ -24,7 +24,6 @@ DEVELOPER = env('DEVELOPER', default='')
 STAGING = env('STAGING', default=False)
 
 
-# HOSTING = env('HOSTING')
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # print(SECRET_KEY)
@@ -48,37 +47,22 @@ else:
 ALLOWED_HOSTS = ['*']
 
 if ENVIRONMENT == 'production':
-    # if HOSTING == 'railway':
     ALLOWED_HOSTS = [
         'localhost', 
         '127.0.0.1', 
-        'awesome-frank.up.railway.app',
         'awesome.frankxue.ca',
+        'awesome-frank.up.railway.app',
         'awesome-staging.up.railway.app',
         ]
     CSRF_TRUSTED_ORIGINS = [
-        'https://awesome-frank.up.railway.app', 
         'https://awesome.frankxue.ca',
-
-        # For staging development
-        'https://awesome-staging.up.railway.app',
+        'https://*.up.railway.app', 
         ]
-    # elif HOSTING == 'render':
-    #     ALLOWED_HOSTS = [
-    #         'localhost', 
-    #         '127.0.0.1', 
-    #         'awesome-qgfk.onrender.com',
-    #         ]
-    #     CSRF_TRUSTED_ORIGINS = [
-    #         'https://awesome-qgfk.onrender.com'
-    #         ]        
-
 
 INTERNAL_IPS = (
     '127.0.0.1',
     'localhost:8000',
 )
-
 
 # Application definition
 
@@ -116,6 +100,7 @@ INSTALLED_APPS = [
     'a_landingpages',
     
     'django_cleanup.apps.CleanupConfig',
+    'django.contrib.sitemaps',
     
 ]
 
@@ -188,13 +173,6 @@ POSTGRES_LOCALLY = False
 
 if ENVIRONMENT == 'production' or POSTGRES_LOCALLY:
     DATABASES['default'] = dj_database_url.parse(env('DATABASE_URL'))
-
-    # if HOSTING == 'railway':
-    #     DATABASES['default'] = dj_database_url.parse(env('RAILWAY_DATABASE_URL'))
-    # elif HOSTING == 'render':
-    #     DATABASES['default'] = dj_database_url.parse(env('RENDER_DATABASE_URL'))
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
