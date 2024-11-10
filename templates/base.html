@@ -8,7 +8,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/png" href="https://img.icons8.com/small/64/000000/fire-heart.png">
-    <title>Awesome</title>
+    <title>{% block title %} {% endblock %}Awesome</title>
+    <meta name="description" content="Image-sharing platform with ranking.">
+    <meta name="keywords" content="Flickr, photo, image sharing, captions, ranking, social media">
+    <meta name="author" content="Frank Xue">
+
+    <meta property="og:url" content="https://{{ request.META.HTTP_HOST }}{{ request.path }}">
+    <meta property="og:title" content="{% block title og-caption %}Awesome{% endblock %}">
+    <meta property="og:description" content="{% block og-description %}Image-sharing platform with ranking.{% endblock %}">
+    <meta property="og:image" content="{% block og-image %}https://{{ request.META.HTTP_HOST }}{% static 'images/awesome.png' %}{% endblock %}">
+    <meta name="twitter:image" content="{% block tw-image %}https://{{ request.META.HTTP_HOST }}{%static 'images/awesome-tw.png' %}{% endblock %}">
 
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">

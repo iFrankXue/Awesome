@@ -22,6 +22,9 @@ class Post(models.Model):
     class Meta:
         ordering = ['-created']
         
+    def get_absolute_url(self):
+        return f'/post/{self.id}/'
+        
         
 class LikedPost(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
@@ -45,6 +48,8 @@ class Tag(models.Model):
     class Meta:
         ordering = ['order']
         
+    def get_absolute_url(self):
+        return f'/category/{self.slug}/'
         
         
 class Comment(models.Model):
