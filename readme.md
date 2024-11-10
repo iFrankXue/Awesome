@@ -1,8 +1,9 @@
-# Awesome
+## Awesome
 
 This is a web app for posting flickr images, using a webcrawler.
 
 Website address: [Awesome](https://awesome.frankxue.ca/)
+
 ---
 
 ## \<Installation>
@@ -87,3 +88,13 @@ module.exports = [
 
 1. Minify the css file: `npm run minify`
 2. Use collectstatic: `cd ..` && `python manage.py collectstatic`
+
+
+
+===
+
+Resources:
+
+[Google Analytics](https://analytics.google.com/)
+
+[Google Console](https://http://console.google.com/)
