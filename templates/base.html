@@ -14,6 +14,7 @@
     <meta name="author" content="Frank Xue">
 
     <meta property="og:url" content="https://{{ request.META.HTTP_HOST }}{{ request.path }}">
+    <meta property="og:type" content="website" />
     <meta property="og:title" content="{% block og-caption %}Awesome{% endblock %}">
     <meta property="og:description" content="{% block og-description %}Image-sharing platform with ranking.{% endblock %}">
     <meta property="og:image" content="{% block og-image %}https://{{ request.META.HTTP_HOST }}{% static 'images/awesome.png' %}{% endblock %}">
