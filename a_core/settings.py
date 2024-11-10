@@ -44,6 +44,7 @@ if ENVIRONMENT == 'production':
 else:
     DEBUG = True
     
+    
 ALLOWED_HOSTS = ['*']
 
 if ENVIRONMENT == 'production':
