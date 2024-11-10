@@ -3,7 +3,7 @@ name: Awesme Testing
 on:
     pull_request:
         branches:
-        - staging
+            - staging
 
 jobs:
     build:
