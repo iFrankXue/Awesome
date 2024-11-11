@@ -1874,19 +1874,19 @@ p {
   margin-bottom: 1rem;
 }
 
-form p {
-  display: flex;
-  align-items: center;
-  margin-bottom: 1rem;
-}
+/* form p {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+} */
 
 label, input {
   display: inline-block;
 }
 
-form p label {
-  width: 7rem;
-}
+/* form p label {
+    width: 7rem;
+    } */
 
 label {
   margin: 6px 0 3px;
@@ -2045,6 +2045,32 @@ input[name="remember"] {
   text-overflow: ellipsis;
   white-space: nowrap;
   line-height: 1.5;
+}
+
+.allauth .helptext {
+  margin-top: 1rem;
+  display: block;
+}
+
+.allauth .card a {
+  text-decoration-line: underline;
+  text-underline-offset: 2px;
+}
+
+.allauth form[action="/accounts/signup/"] ul {
+  display: none;
+}
+
+.allauth form[action="/accounts/signup/"] ul.errorlist {
+  display: block;
+}
+
+.allauth label[for="id_password2"] {
+  display: none;
+}
+
+.allauth input#id_password2 {
+  margin-bottom: 1rem;
 }
 
 .hover\:scale-95:hover {
