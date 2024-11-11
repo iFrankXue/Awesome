@@ -98,3 +98,5 @@ Resources:
 [Google Analytics](https://analytics.google.com/)
 
 [Google Console](https://http://console.google.com/)
+
+[Cloudinary Platform](https://console.cloudinary.com)

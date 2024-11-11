@@ -39,12 +39,9 @@
     <script src="https://unpkg.com/hyperscript.org@0.9.13"></script>
     
     <link rel="stylesheet" href="{% if debug %}{% static 'css/style.css' %}{% else %}{% static 'css/style.min.css' %}{% endif %}">
-
-
 </head>
 
-
-<body class="bg-gray-100">
+<body class="bg-gray-100 {% block class %}{% endblock  %}">
     
     {% include 'includes/messages.html' %}
 
